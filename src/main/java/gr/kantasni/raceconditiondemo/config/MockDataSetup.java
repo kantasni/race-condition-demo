@@ -39,9 +39,9 @@ public class MockDataSetup implements ApplicationListener<ApplicationStartedEven
     public void fillOptimisticMockDataTable(){
         List<OptimisticMockData> list = new ArrayList<>();
         log.info("Initializing optimistic mock data...");
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10_000; i++) {
             OptimisticMockData optimisticMockData = new OptimisticMockData();
-            optimisticMockData.setName("test_" + i);
+            optimisticMockData.setName("test_optimistic_" + i);
             optimisticMockData.setNumber(i);
             optimisticMockData.setSwapBoolean(false);
 
@@ -55,9 +55,9 @@ public class MockDataSetup implements ApplicationListener<ApplicationStartedEven
     public void fillSynchronizedMockDataTable(){
         List<SynchronizedMockData> list = new ArrayList<>();
         log.info("Initializing synchronized mock data...");
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10_000; i++) {
             SynchronizedMockData optimisticMockData = new SynchronizedMockData();
-            optimisticMockData.setName("test_" + i);
+            optimisticMockData.setName("test_synchronized_" + i);
             optimisticMockData.setNumber(i);
             optimisticMockData.setSwapBoolean(false);
 

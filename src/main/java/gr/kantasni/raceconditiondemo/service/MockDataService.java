@@ -8,4 +8,6 @@ import gr.kantasni.raceconditiondemo.api.MockData;
 public interface MockDataService<T extends MockData> {
 
     T getMockData(Integer number);
+
+    T getRandomMockData();
 }

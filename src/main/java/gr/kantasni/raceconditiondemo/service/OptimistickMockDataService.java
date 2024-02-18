@@ -30,24 +30,19 @@ public class OptimistickMockDataService implements MockDataService<OptimisticMoc
 
             return optimisticRepository.save(data);
         } catch (Exception ex) {
-            log.info("Insert failed, concurrent,trying again...");
-
             return getMockData(number);
         }
     }
 
-    public void fillDb() {
-        List<OptimisticMockData> list = new ArrayList<>();
-        log.info("Initializing db...");
-        for (int i = 0; i < 5_000; i++) {
-            OptimisticMockData optimisticMockData = new OptimisticMockData();
-            optimisticMockData.setName("test_" + i);
-            optimisticMockData.setNumber(i);
-            optimisticMockData.setSwapBoolean(false);
+    @Override
+    public OptimisticMockData getRandomMockData() {
+        try {
+            OptimisticMockData data = optimisticRepository.findRandom();
+            data.setSwapBoolean(!data.isSwapBoolean());
 
-            list.add(optimisticMockData);
+            return optimisticRepository.save(data);
+        } catch (Exception ex) {
+            return getRandomMockData();
         }
-        optimisticRepository.saveAll(list);
-        log.info("Initialization complete");
     }
 }

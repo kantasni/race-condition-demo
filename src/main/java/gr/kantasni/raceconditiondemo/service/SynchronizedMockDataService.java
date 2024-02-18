@@ -27,4 +27,16 @@ public class SynchronizedMockDataService implements MockDataService<Synchronized
 
         return null;
     }
+
+    @Override
+    public SynchronizedMockData getRandomMockData() {
+        SynchronizedMockData data = repository.findRandom();
+        if (data != null) {
+            data.setSwapBoolean(!data.isSwapBoolean());
+
+            return repository.save(data);
+        }
+
+        return null;
+    }
 }
